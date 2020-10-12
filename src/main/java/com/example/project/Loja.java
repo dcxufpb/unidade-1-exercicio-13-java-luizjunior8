@@ -47,9 +47,55 @@ public class Loja {
         this.endereco = endereco;
     }
 
+    public static String Spacer = System.lineSeparator();
+
+
+    public static boolean checker (String tested){
+		String k = "";
+		k += tested;
+		if (k.equals("null")|| k.isEmpty()){
+			return false;
+		}	
+		return true;	
+    }
+
+    public void validar_dados_obrigatorios() {
+
+        if (checker(this.getNomeLoja()) == false){
+			throw new RuntimeException ("O campo nome da loja é obrigatório");
+        }
+
+        if (checker(this.getCnpj()) == false){
+			throw new RuntimeException ("O campo cnpj da loja é obrigatório");
+        }
+
+        if (checker(this.getInscricaoEstadual()) == false){
+			throw new RuntimeException ("O campo inscrição estadual da loja é obrigatório");
+		}
+    }
+
     public String dadosLoja() {
-		// Implemente aqui
-		return null;
+        
+        validar_dados_obrigatorios();
+
+		String _telefone = checker(this.getTelefone()) == false? "" : "Tel " + this.getTelefone();
+
+	 	if (checker(endereco.getCep()) && !_telefone.isEmpty()){
+			_telefone = " Tel " + this.getTelefone();
+		}
+
+        String _observacao = checker(this.getObservacao()) == false ? "" : this.getObservacao();
+
+        String _cnpj = "CNPJ: " + this.getCnpj();
+
+        String _inscricao_estadual = "IE: " + this.getInscricaoEstadual(); 
+
+        return (this.getNomeLoja() + Spacer +
+         endereco.dados_endereco()
+		 + _telefone + Spacer +
+		 _observacao + Spacer +	
+		 _cnpj + Spacer +
+		 _inscricao_estadual + Spacer);
 	}
 
 }
