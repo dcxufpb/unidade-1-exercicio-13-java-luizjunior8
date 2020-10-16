@@ -1,14 +1,14 @@
 {
   "tests": [
     {
-      "name": "Teste",
+      "name": "Test",
       "setup": "",
       "run": "mvn test",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 1
+      "points": 10
     }
   ]
 }
