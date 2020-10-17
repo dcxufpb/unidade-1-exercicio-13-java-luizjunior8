@@ -1,6 +1,6 @@
 package com.example.project;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,12 +34,12 @@ public class TestVenda {
     
     private Loja brickLoja = new Loja (NOME_LOJA, brickEndereco, TELEFONE, OBSERVACAO, CNPJ, INSCRICAO_ESTADUAL);
 
-    	
+    @Test	
 	public void validLoja() {
         Venda lojaNull = new Venda (null, DATA_HORA, CCF, COO);
 		verificarCampoObrigatorio("Informe uma loja válida", lojaNull);
     }
-
+    @Test
     public void validTime() {
         Venda nullTime = new Venda (brickLoja, null, CCF, COO);
         verificarCampoObrigatorio("A data e a hora são obrigatórias", nullTime);
@@ -47,14 +47,14 @@ public class TestVenda {
         Venda emptyTime = new Venda (brickLoja, "", CCF, COO);
         verificarCampoObrigatorio("A data e a hora são obrigatórias", emptyTime);
     }
-
+    @Test
     public void validCCF() {
         Venda nullCcf = new Venda(brickLoja, DATA_HORA, 0, COO);
         verificarCampoObrigatorio("O campo ccf é obrigatório", nullCcf);
     }
-
+    @Test
     public void validCOO() {
         Venda nullCoo = new Venda(brickLoja, DATA_HORA, CCF, 0);
-        verificarCampoObrigatorio("O campo ccf é obrigatório", nullCoo);
+        verificarCampoObrigatorio("O campo coo é obrigatório", nullCoo);
     }
 }
